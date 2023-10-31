@@ -1,0 +1,5 @@
+Usuario:  usrcafeteria
+
+Contraseña: Cafe257...
+
+Base de Datos: sis257_cafeteria
