@@ -5,6 +5,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -22,5 +23,9 @@ export class Compra {
   @ManyToOne(() => Usuario, (usuario) => usuario.compras)
   @JoinColumn({ name: 'id_usuario', referencedColumnName: 'id' })
   usuarios: Usuario;
+
+
+  @OneToMany(() => Compra, (compra) => compra.compras)
+  compras: Compra[];
 }
 export { Usuario };

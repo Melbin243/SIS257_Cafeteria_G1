@@ -6,6 +6,9 @@ import { AppService } from './app.service';
 import { ClientesModule } from './clientes/clientes.module';
 import { ComprasModule } from './compras/compras.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
+import { CategoriasModule } from './categorias/categorias.module';
+import { ProductosModule } from './productos/productos.module';
+import { CompraDetallesModule } from './compra-detalles/compra-detalles.module';
 
 @Module({
   imports: [
@@ -24,6 +27,9 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     ClientesModule,
     UsuariosModule,
     ComprasModule,
+    CategoriasModule,
+    ProductosModule,
+    CompraDetallesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -13,7 +13,7 @@ async function bootstrap() {
     .setTitle('Api Rest Cafeteria')
     .setDescription('Backend del proyecto final de sis257')
     .setVersion('1.0')
-    .addTag('clientes, usuarios, compras')
+    .addTag('clientes, usuarios, compras, categorias, productos, compraDetalles')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('apidoc', app, document);
