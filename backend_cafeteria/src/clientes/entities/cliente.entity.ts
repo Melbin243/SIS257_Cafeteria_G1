@@ -8,16 +8,13 @@ export class Cliente {
   @Column({ type: 'varchar', length: 40, nullable: false })
   nombre: string;
 
-  @Column({ name: 'apellido_paterno', type: 'varchar', length: 40 })
-  apellidoPaterno: string;
-
-  @Column({ name: 'apellido_materno', type: 'varchar', length: 40 })
-  apellidoMaterno: string;
+  @Column({ name: 'apellidos', type: 'varchar', length: 80 })
+  apellidos: string;
 
   @Column({ type: 'varchar', length: 40 })
   direccion: string;
 
-  @Column({ length: 8})
+  @Column({ length: 15})
   celular: string;
 
   @CreateDateColumn({name: 'fecha_creacion'})

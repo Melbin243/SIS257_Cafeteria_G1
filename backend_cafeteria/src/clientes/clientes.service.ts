@@ -15,8 +15,7 @@ export class ClientesService {
   async create(createClienteDto: CreateClienteDto): Promise<Cliente> {
     const existeCliente = await this.clienteRepository.findOneBy({
       nombre: createClienteDto.nombre,
-      apellidoPaterno: createClienteDto.apellidoPaterno,
-      apellidoMaterno: createClienteDto.apellidoMaterno
+      apellidos: createClienteDto.apellidos,
     });
 
     if (existeCliente) {
@@ -25,8 +24,7 @@ export class ClientesService {
 
     return this.clienteRepository.save({
       nombre: createClienteDto.nombre.trim(),
-      apellidoPaterno: createClienteDto.apellidoPaterno.trim(),
-      apellidoMaterno: createClienteDto.apellidoMaterno.trim(),
+      apellidos: createClienteDto.apellidos.trim(),
       direccion: createClienteDto.direccion.trim(),
       celular: createClienteDto.celular.trim()
     });

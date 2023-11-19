@@ -11,20 +11,13 @@ export class CreateClienteDto {
   readonly nombre: string;
 
   @ApiProperty()
-  @IsNotEmpty({ message: 'El campo apellido paterno no puede estar vacio' })
-  @IsString({ message: 'El campo apellido paterno debe ser de tipo texto' })
+  @IsNotEmpty({ message: 'El campo apellidos paterno no puede estar vacio' })
+  @IsString({ message: 'El campo apellidos paterno debe ser de tipo texto' })
   @MaxLength(40, {
-    message: 'El campo apellido paterno no puede tener mas de 40 carácteres',
+    message: 'El campo apellidos paterno no puede tener mas de 40 carácteres',
   })
-  readonly apellidoPaterno: string;
+  readonly apellidos: string;
 
-  @ApiProperty()
-  @IsNotEmpty({ message: 'El campo apellido materno no puede estar vacio' })
-  @IsString({ message: 'El campo apellido materno debe ser de tipo texto' })
-  @MaxLength(40, {
-    message: 'El campo apellido materno no puede tener mas de 40 carácteres',
-  })
-  readonly apellidoMaterno: string;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo dirección no puede estar vacio' })
@@ -38,7 +31,7 @@ export class CreateClienteDto {
   @IsNotEmpty({ message: 'El campo celular no puede estar vacio' })
   @IsString({ message: 'El campo celular debe ser de tipo texto' })
   @MaxLength(8, {
-    message: 'El campo celular no puede tener mas de 8 carácteres',
+    message: 'El campo celular no puede tener mas de 15 carácteres',
   })
   readonly celular: string;
 }
