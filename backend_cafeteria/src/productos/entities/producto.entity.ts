@@ -1,6 +1,5 @@
-import { Categoria } from "src/categorias/entities/categoria.entity";
 import { CompraDetalle } from "src/compra-detalles/entities/compra-detalle.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('productos')
 export class Producto {
@@ -27,8 +26,4 @@ export class Producto {
 
     @OneToMany(() => CompraDetalle, (compradetalle) => compradetalle.productos)
     compradetalle: CompraDetalle[];
-
-    @ManyToOne(() => Categoria, (categoria) => categoria.productos )
-    @JoinColumn({ name: 'id_categoria', referencedColumnName: 'id' })
-    categorias: Categoria;
 }
