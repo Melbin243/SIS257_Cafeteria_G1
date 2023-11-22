@@ -51,12 +51,12 @@ onMounted(() => {
         <li class="breadcrumb-item">
           <RouterLink to="/clientes">Clientes</RouterLink>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Editar</li>
+        <li class="breadcrumb-item active" aria-current="page" style="color: cadetblue;">Editar</li>
       </ol>
     </nav>
 
     <div class="row">
-      <h2>Editar Cliente</h2>
+      <h2 style="color: whitesmoke;">Editar Cliente</h2>
     </div>
 
     <div class="row">

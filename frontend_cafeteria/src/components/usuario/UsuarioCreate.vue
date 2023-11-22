@@ -42,7 +42,7 @@ function goBack() {
     </nav>
 
     <div class="row">
-      <h2>Crear Nuevo usuario</h2>
+      <h2 style="color: white;">Crear Nuevo usuario</h2>
     </div>
 
     <div class="row">

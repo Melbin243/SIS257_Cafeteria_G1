@@ -37,12 +37,12 @@ function goBack() {
         <li class="breadcrumb-item">
           <RouterLink to="/clientes">Clientes</RouterLink>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Crear</li>
+        <li class="breadcrumb-item active" aria-current="page" style="color: cadetblue;">Crear</li>
       </ol>
     </nav>
 
     <div class="row">
-      <h2>Crear Nuevo Cliente</h2>
+      <h2 style="color: whitesmoke;">Crear Nuevo Cliente</h2>
     </div>
 
     <div class="row">

@@ -44,7 +44,7 @@ function goBack() {
     </nav>
 
     <div class="row">
-      <h2>Crear Nuevo Producto</h2>
+      <h2 style="color: white;">Crear Nuevo Producto</h2>
     </div>
 
     <div class="row">

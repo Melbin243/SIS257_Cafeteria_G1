@@ -40,7 +40,7 @@ onMounted(() => {
     </nav>
 
     <div class="row">
-      <h2>Lista de Productos</h2>
+      <h2 style="color: white;">Lista de Productos</h2>
       <div class="col-12">
         <RouterLink to="/productos/crear">
           <font-awesome-icon icon="fa-solid fa-circle-plus"/> Crear Nuevo
@@ -49,7 +49,7 @@ onMounted(() => {
     </div>
 
     <div class="table-responsive">
-      <table class="table table-bordered">
+      <table class="table table-bordered" style="background-color: white;">
         <thead>
           <tr>
             <th scope="col">N°</th>

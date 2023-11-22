@@ -1,9 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import LoginView from '@/views/LoginView.vue'
+import { useAuthStore } from '@/stores'
+import { getTokenFromLocalStorage } from '@/helpers'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    { path: '/login', name: 'login', component: LoginView },
     {
       path: '/',
       name: 'home',
@@ -36,11 +40,11 @@ const router = createRouter({
       component: () => import('../views/ProductoView.vue'),
       children: [
         { path: '', component: () => import('../components/producto/ProductoList.vue') },
-         { path: 'crear', component: () => import('../components/producto/ProductoCreate.vue') },
-         {
-           path: 'editar/:id',
-           component: () => import('../components/producto/ProductoEdit.vue')
-         }
+        { path: 'crear', component: () => import('../components/producto/ProductoCreate.vue') },
+        {
+          path: 'editar/:id',
+          component: () => import('../components/producto/ProductoEdit.vue')
+        }
       ]
     },
     {
@@ -49,14 +53,26 @@ const router = createRouter({
       component: () => import('../views/UsuarioView.vue'),
       children: [
         { path: '', component: () => import('../components/usuario/UsuarioList.vue') },
-          { path: 'crear', component: () => import('../components/usuario/UsuarioCreate.vue') },
-          {
-            path: 'editar/:id',
-            component: () => import('../components/usuario/UsuarioEdit.vue')
-          }
+        { path: 'crear', component: () => import('../components/usuario/UsuarioCreate.vue') },
+        {
+          path: 'editar/:id',
+          component: () => import('../components/usuario/UsuarioEdit.vue')
+        }
       ]
     }
   ]
+})
+
+router.beforeEach(async (to) => {
+  const publicPages = ['/', '/about', '/login']
+  const authRequired = !publicPages.includes(to.path)
+  const authStore = useAuthStore()
+
+  if (authRequired && !getTokenFromLocalStorage()) {
+    if (authStore) authStore.logout()
+    authStore.returnUrl = to.fullPath
+    return '/login'
+  }
 })
 
 export default router

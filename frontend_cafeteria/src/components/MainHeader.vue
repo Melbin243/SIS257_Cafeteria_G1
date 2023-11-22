@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { useAuthStore } from '@/stores/index'
+const authStore = useAuthStore()
+const location = useRoute()
+</script>
 
 <template scope>
   <header>
@@ -28,19 +33,34 @@
             <RouterLink to="/" class="nav-link text-uppercase">Inicio</RouterLink>
           </li>
           <li class="nav-item px-lg-4">
-            <RouterLink to="/usuarios" class="nav-link text-uppercase">Usuarios</RouterLink>
-          </li>
-          <li class="nav-item px-lg-4">
-            <RouterLink to="/productos" class="nav-link text-uppercase">Productos</RouterLink>
-          </li>
-          <li class="nav-item px-lg-4">
-            <RouterLink to="/compras" class="nav-link text-uppercase">Compras</RouterLink>
-          </li>
-          <li class="nav-item px-lg-4">
-            <RouterLink to="/clientes" class="nav-link text-uppercase">Clientes</RouterLink>
-          </li>
-          <li class="nav-item px-lg-4">
             <RouterLink to="/about" class="nav-link text-uppercase">Acerca de</RouterLink>
+          </li>
+          <slot v-if="authStore.token">
+            <li class="nav-item px-lg-4">
+              <RouterLink to="/usuarios" class="nav-link text-uppercase">Usuarios</RouterLink>
+            </li>
+            <li class="nav-item px-lg-4">
+              <RouterLink to="/productos" class="nav-link text-uppercase">Productos</RouterLink>
+            </li>
+            <li class="nav-item px-lg-4">
+              <RouterLink to="/compras" class="nav-link text-uppercase">Compras</RouterLink>
+            </li>
+            <li class="nav-item px-lg-4">
+              <RouterLink to="/clientes" class="nav-link text-uppercase">Clientes</RouterLink>
+            </li>
+            <li class="nav-item px-lg-4">
+              <RouterLink to="#" class="nav-link text-uppercase"
+                >Hola {{ authStore.user }}</RouterLink
+              >
+            </li>
+          </slot>
+        </ul>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item px-lg-4">
+            <RouterLink v-if="!authStore.token" to="/login" class="nav-link text-uppercase"
+              >Iniciar Sesión</RouterLink
+            >
+            <a v-else @click="authStore.logout()" class="nav-link text-uppercase" style="cursor: pointer;">Salir</a>
           </li>
         </ul>
       </div>

@@ -56,7 +56,7 @@ onMounted(() => {
     </nav>
 
     <div class="row">
-      <h2>Editar Usuario</h2>
+      <h2 style="color: white;">Editar Usuario</h2>
     </div>
 
     <div class="row">
