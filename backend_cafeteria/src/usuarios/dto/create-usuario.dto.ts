@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDefined, IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class CreateUsuarioDto {
   @ApiProperty()
@@ -10,13 +10,21 @@ export class CreateUsuarioDto {
   })
   readonly usuario: string;
 
+  // @ApiProperty()
+  // @IsNotEmpty({ message: 'El campo clave no puede estar vacio' })
+  // @IsString({ message: 'El campo clave debe ser de tipo texto' })
+  // @MaxLength(35, {
+  //   message: 'El campo clave no puede tener mas de 35 carácteres',
+  // })
+  // readonly clave: string;
+
   @ApiProperty()
-  @IsNotEmpty({ message: 'El campo clave no puede estar vacio' })
-  @IsString({ message: 'El campo clave debe ser de tipo texto' })
-  @MaxLength(35, {
-    message: 'El campo clave no puede tener mas de 35 carácteres',
+  @IsNotEmpty({ message: 'El campo email no debe ser vacio' })
+  @IsEmail({}, { message: 'El campo email debe ser un email válido' })
+  @MaxLength(100, {
+    message: 'El campo email no debe ser mayor a 100 caracteres',
   })
-  readonly clave: string;
+  readonly email: string;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo rol no puede estar vacio' })
@@ -25,9 +33,4 @@ export class CreateUsuarioDto {
     message: 'El campo rol no puede tener mas de 20 carácteres',
   })
   readonly rol: string;
-
-  @ApiProperty()
-  @IsDefined({message: 'El campo id cliente debe estar definido'})
-  @IsNumber({}, {message: 'El campo id cliente debe ser tipo numérico'})
-  readonly idCliente: number;
 }

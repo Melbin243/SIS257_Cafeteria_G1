@@ -10,6 +10,7 @@ const props = defineProps<{
 const ENDPOINT = props.ENDPOINT_API ?? ''
 const nombre = ref('')
 const descripcion = ref('')
+const categoria = ref('')
 const precio = ref('')
 const stock = ref('')
 const id = router.currentRoute.value.params['id']
@@ -19,6 +20,7 @@ async function editarProducto() {
     .patch(`${ENDPOINT}/${id}`, {
         nombre: nombre.value,
         descripcion: descripcion.value,
+        categoria: categoria.value,
         precio: precio.value,
         stock: stock.value
     })
@@ -29,6 +31,7 @@ async function getProducto() {
   await http.get(`${ENDPOINT}/${id}`).then((response) => {
     ;(nombre.value = response.data.nombre),
       (descripcion.value = response.data.descripcion),
+      (categoria.value = response.data.categoria),
       (precio.value = response.data.precio),
       (stock.value = response.data.stock)
   })
@@ -62,18 +65,28 @@ onMounted(() => {
     <div class="row">
       <form @submit.prevent="editarProducto">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
+          <input type="string" class="form-control" v-model="nombre" placeholder="Nombre" required />
           <label for="nombre">Nombre</label>
         </div>
         <div class="form-floating mb-3">
           <input
-            type="text"
+            type="string"
             class="form-control"
             v-model="descripcion"
             placeholder="Descripcion"
             required
           />
           <label for="descripcion">Descripcion</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="string"
+            class="form-control"
+            v-model="categoria"
+            placeholder="Categoria"
+            required
+          />
+          <label for="categoria">Categoria</label>
         </div>
         <div class="form-floating mb-3">
           <input

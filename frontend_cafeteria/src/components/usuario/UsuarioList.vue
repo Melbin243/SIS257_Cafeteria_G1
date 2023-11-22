@@ -56,6 +56,7 @@ onMounted(() => {
             <th scope="col">N°</th>
             <th scope="col">Usuario</th>
             <th scope="col">Clave</th>
+            <th scope="col">Email</th>
             <th scope="col">Rol</th>
             <th scope="col">Acciones</th>
           </tr>
@@ -65,6 +66,7 @@ onMounted(() => {
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ usuario.usuario }}</td>
             <td>{{ usuario.clave }}</td>
+            <td>{{ usuario.email }}</td>
             <td>{{ usuario.rol }}</td>
             <td>
               <button class="btn text-success" @click="toEdit(usuario.id)">
@@ -81,4 +83,4 @@ onMounted(() => {
   </div>
 </template>
 
-<style></style>
+<style scoped></style>

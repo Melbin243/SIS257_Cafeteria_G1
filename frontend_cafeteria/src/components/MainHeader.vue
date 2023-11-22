@@ -28,6 +28,9 @@
             <RouterLink to="/" class="nav-link text-uppercase">Inicio</RouterLink>
           </li>
           <li class="nav-item px-lg-4">
+            <RouterLink to="/usuarios" class="nav-link text-uppercase">Usuarios</RouterLink>
+          </li>
+          <li class="nav-item px-lg-4">
             <RouterLink to="/productos" class="nav-link text-uppercase">Productos</RouterLink>
           </li>
           <li class="nav-item px-lg-4">

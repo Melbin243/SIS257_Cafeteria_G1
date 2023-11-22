@@ -15,6 +15,12 @@ export class CreateProductoDto {
     readonly descripcion: string;
 
     @ApiProperty()
+    @IsNotEmpty({ message: 'El campo categoria no debe ser vacio' })
+    @IsString({ message: 'El campo categoria debe ser de tipo cadena' })
+    @MaxLength(200, { message: 'El campo categoria no debe ser mayor a 200 caracteres'})
+    readonly categoria: string;
+
+    @ApiProperty()
     @IsDefined({ message: 'El campo precio debe ser definido' })
     @IsNumber({}, { message: 'El campo precio debe ser de tipo numérico' })
     readonly precio: number;

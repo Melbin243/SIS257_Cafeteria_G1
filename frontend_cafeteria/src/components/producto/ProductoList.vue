@@ -55,6 +55,7 @@ onMounted(() => {
             <th scope="col">N°</th>
             <th scope="col">Nombre</th>
             <th scope="col">Descripcion</th>
+            <th scope="col">Categoria</th>
             <th scope="col">Precio</th>
             <th scope="col">Stock</th>
             <th scope="col">Acciones</th>
@@ -65,6 +66,7 @@ onMounted(() => {
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ producto.nombre }}</td>
             <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.categoria }}</td>
             <td>{{ producto.precio }}</td>
             <td>{{ producto.stock }}</td>
             <td>

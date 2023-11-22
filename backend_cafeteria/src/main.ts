@@ -14,6 +14,12 @@ async function bootstrap() {
     .setDescription('Backend del proyecto final de sis257')
     .setVersion('1.0')
     .addTag('clientes, usuarios, compras, categorias, productos, compraDetalles')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      in: 'header',
+    })
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('apidoc', app, document);

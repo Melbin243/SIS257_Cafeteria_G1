@@ -10,16 +10,16 @@ const props = defineProps<{
 const ENDPOINT = props.ENDPOINT_API ?? ''
 const usuario = ref('')
 const clave = ref('')
+const email = ref('')
 const rol = ref('')
-const idCliente = ref('')
 
 async function crearUsuario() {
   await http
     .post(ENDPOINT, {
       usuario: usuario.value,
       clave: clave.value,
-      rol: rol.value,
-      idCliente: idCliente.value
+      email: email.value,
+      rol: rol.value
     })
     .then(() => router.push('/usuarios'))
 }
@@ -48,12 +48,12 @@ function goBack() {
     <div class="row">
       <form @submit.prevent="crearUsuario">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="usuario" placeholder="Usuario" required />
+          <input type="string" class="form-control" v-model="usuario" placeholder="Usuario" required />
           <label for="usuario">Usuario</label>
         </div>
         <div class="form-floating mb-3">
           <input
-            type="text"
+            type="string"
             class="form-control"
             v-model="clave"
             placeholder="Clave"
@@ -63,23 +63,23 @@ function goBack() {
         </div>
         <div class="form-floating mb-3">
           <input
-            type="text"
+            type="string"
+            class="form-control"
+            v-model="email"
+            placeholder="Email"
+            required
+          />
+          <label for="email">Email</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="string"
             class="form-control"
             v-model="rol"
             placeholder="Rol"
             required
           />
           <label for="rol">Rol</label>
-        </div>
-        <div class="form-floating">
-          <input
-            type="number"
-            class="form-control"
-            v-model="idCliente"
-            placeholder="IdCliente"
-            required
-          />
-          <label for="idCliente">IdCliente</label>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">Crear</button>

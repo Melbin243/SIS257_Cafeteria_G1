@@ -10,6 +10,7 @@ const props = defineProps<{
 const ENDPOINT = props.ENDPOINT_API ?? ''
 const nombre = ref('')
 const descripcion = ref('')
+const categoria = ref('')
 const precio = ref('')
 const stock = ref('')
 
@@ -18,6 +19,7 @@ async function crearProducto() {
     .post(ENDPOINT, {
       nombre: nombre.value,
       descripcion: descripcion.value,
+      categoria: categoria.value,
       precio: precio.value,
       stock: stock.value
     })
@@ -48,18 +50,28 @@ function goBack() {
     <div class="row">
       <form @submit.prevent="crearProducto">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
+          <input type="string" class="form-control" v-model="nombre" placeholder="Nombre" required />
           <label for="nombre">Nombre</label>
         </div>
         <div class="form-floating mb-3">
           <input
-            type="text"
+            type="string"
             class="form-control"
             v-model="descripcion"
             placeholder="Descripcion"
             required
           />
           <label for="descripcion">Descripcion</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="string"
+            class="form-control"
+            v-model="categoria"
+            placeholder="Categoria"
+            required
+          />
+          <label for="categoria">Categoria</label>
         </div>
         <div class="form-floating mb-3">
           <input

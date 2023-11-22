@@ -1,15 +1,16 @@
-import { Cliente } from 'src/clientes/entities/cliente.entity';
 import { Compra } from 'src/compras/entities/compra.entity';
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Entity('usuarios')
 export class Usuario {
@@ -19,8 +20,11 @@ export class Usuario {
   @Column({ type: 'varchar', length: 30 })
   usuario: string;
 
-  @Column({ type: 'varchar', length: 35 })
+  @Column({ type: 'varchar', length: 100})
   clave: string;
+
+  @Column({ type: 'varchar', length: 100, nullable: false })
+  email: string;
 
   @Column({length: 20})
   rol: string
@@ -31,11 +35,18 @@ export class Usuario {
   @UpdateDateColumn({name: 'fecha_modicficacion'})
   fechaModificacion: Date
 
-  @OneToOne(() => Cliente)
-  @JoinColumn({ name: 'id_cliente', referencedColumnName: 'id' })
-  cliente: Cliente;
-
-  @OneToMany(() => Compra, (compra) => compra.usuarios)
+  @OneToMany(() => Compra, (compra) => compra.usuario)
   @JoinColumn({ name: 'id_compra', referencedColumnName: 'id' })
   compras: Compra[];
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async hashPassword() {
+    const salt = await bcrypt.genSalt();
+    this.clave = await bcrypt.hash(this.clave, salt);
+  }
+
+  async validatePassword(plainPassword: string): Promise<boolean> {
+    return bcrypt.compare(plainPassword, this.clave);
+  }
 }

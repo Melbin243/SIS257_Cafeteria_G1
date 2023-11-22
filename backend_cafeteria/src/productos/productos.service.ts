@@ -23,6 +23,7 @@ export class ProductosService {
     return this.productoRepository.save({
       nombre: createProductoDto.nombre.trim(),
       descripcion: createProductoDto.descripcion.trim(),
+      categoria: createProductoDto.categoria.trim(),
       precio: createProductoDto.precio,
       stock: createProductoDto.stock
     });
