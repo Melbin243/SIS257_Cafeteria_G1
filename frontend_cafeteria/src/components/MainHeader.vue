@@ -8,7 +8,7 @@ const location = useRoute()
 <template scope>
   <header>
     <h1 class="site-heading text-center text-faded d-none d-lg-block">
-      <span class="site-heading-upper text-primary mb-3">CAFE</span>
+      <span style="font-size: 60px;" class="site-heading-upper text-primary mb-3">CAFETERIA</span>
       <span class="site-heading-lower">CAFE CAPITAL</span>
     </h1>
   </header>
@@ -47,6 +47,9 @@ const location = useRoute()
             </li>
             <li class="nav-item px-lg-4">
               <RouterLink to="/clientes" class="nav-link text-uppercase">Clientes</RouterLink>
+            </li>
+            <li class="nav-item px-lg-4">
+              <RouterLink to="/tienda" class="nav-link text-uppercase">Tienda</RouterLink>
             </li>
             <li class="nav-item px-lg-4">
               <RouterLink to="#" class="nav-link text-uppercase"

@@ -80,6 +80,7 @@ function goBack() {
             v-model="precio"
             placeholder="Precio"
             required
+            step="0.1"
           />
           <label for="precio">Precio</label>
         </div>

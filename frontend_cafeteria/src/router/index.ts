@@ -22,6 +22,19 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
+      path: '/tienda',
+      name: 'tienda',
+      component: () => import('../views/ProductoView.vue'),
+      children: [
+        { path: '', component: () => import('../views/TiendaView.vue') },
+        // { path: 'crear', component: () => import('../components/producto/ProductoCreate.vue') },
+        // {
+        //   path: 'editar/:id',
+        //   component: () => import('../components/producto/ProductoEdit.vue')
+        // }
+      ]
+    },
+    {
       path: '/clientes',
       name: 'clientes',
       component: () => import('../views/ClienteView.vue'),

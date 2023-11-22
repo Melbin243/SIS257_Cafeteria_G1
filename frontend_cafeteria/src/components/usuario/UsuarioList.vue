@@ -55,7 +55,6 @@ onMounted(() => {
           <tr>
             <th scope="col">N°</th>
             <th scope="col">Usuario</th>
-            <th scope="col">Clave</th>
             <th scope="col">Email</th>
             <th scope="col">Rol</th>
             <th scope="col">Acciones</th>
@@ -65,7 +64,6 @@ onMounted(() => {
           <tr v-for="(usuario, index) in usuarios" :key="usuario.id">
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ usuario.usuario }}</td>
-            <td>{{ usuario.clave }}</td>
             <td>{{ usuario.email }}</td>
             <td>{{ usuario.rol }}</td>
             <td>
@@ -73,7 +71,7 @@ onMounted(() => {
                 <font-awesome-icon icon="fa-solid fa-edit" />
               </button>
               <button class="btn text-danger" @click="toDelete(usuario.id)">
-                <font-awesome-icon icon="fa-solid fa-trash" />
+                <font-awesome-icon icon="fa-solid fa-trash-can" />
               </button>
             </td>
           </tr>
