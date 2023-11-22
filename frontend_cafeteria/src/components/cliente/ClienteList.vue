@@ -36,12 +36,12 @@ onMounted(() => {
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
-        <li class="breadcrumb-item active" aria-current="page">Intérpretes</li>
+        <li class="breadcrumb-item active" aria-current="page">Clientes</li>
       </ol>
     </nav>
 
     <div class="row">
-      <h2>Lista de Cliente</h2>
+      <h2 style="background-color: white">Lista de Clientes</h2>
       <div class="col-12">
         <RouterLink to="/clientes/crear">
           <font-awesome-icon icon="fa-solid fa-circle-plus"/> Crear Nuevo
@@ -50,7 +50,7 @@ onMounted(() => {
     </div>
 
     <div class="table-responsive">
-      <table class="table table-bordered">
+      <table class="table table-bordered" style="background-color: white">
         <thead>
           <tr>
             <th scope="col">N°</th>
