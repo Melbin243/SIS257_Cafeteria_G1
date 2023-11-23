@@ -35,6 +35,9 @@ const location = useRoute()
           <li class="nav-item px-lg-4">
             <RouterLink to="/about" class="nav-link text-uppercase">Acerca de</RouterLink>
           </li>
+          <li class="nav-item px-lg-4">
+            <RouterLink to="/contacto" class="nav-link text-uppercase">Contacto</RouterLink>
+          </li>
           <slot v-if="authStore.token">
             <li class="nav-item px-lg-4">
               <RouterLink to="/usuarios" class="nav-link text-uppercase">Usuarios</RouterLink>

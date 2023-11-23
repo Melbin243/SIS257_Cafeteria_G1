@@ -22,6 +22,22 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
+      path: '/contacto',
+      name: 'contacto',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/ContactoView.vue')
+    },
+    // {
+    //   path: '/catalogo',
+    //   name: 'catalogo',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../views/CatalogoView.vue')
+    // },
+    {
       path: '/tienda',
       name: 'tienda',
       component: () => import('../views/ProductoView.vue'),
@@ -77,7 +93,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to) => {
-  const publicPages = ['/', '/about', '/login']
+  const publicPages = ['/', '/about','/contacto', '/login']
   const authRequired = !publicPages.includes(to.path)
   const authStore = useAuthStore()
 

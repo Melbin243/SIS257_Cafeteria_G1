@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Producto } from '@/models/producto'
+import{ Producto } from '@/models/producto';
 import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
