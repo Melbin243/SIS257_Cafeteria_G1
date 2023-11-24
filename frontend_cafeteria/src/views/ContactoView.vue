@@ -55,4 +55,8 @@
 .contenedor a:hover{
   transform: scale(1.2);
 }
+
+.container{
+    color: white;
+}
 </style>

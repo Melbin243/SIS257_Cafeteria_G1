@@ -1,7 +1,18 @@
 <script setup lang="ts">
+import { onMounted} from 'vue'
 import { ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
+import type { Usuario } from '@/models/usuario';
+
+var usuarios = ref<Usuario[]>([])
+async function getUsuarios() {
+  usuarios.value = await http.get("usuarios").then((response) => response.data)
+}
+
+onMounted(() => {
+  getUsuarios()
+})
 
 const props = defineProps<{
   ENDPOINT_API: string
@@ -12,6 +23,7 @@ const nombre = ref('')
 const apellidos = ref('')
 const direccion = ref('')
 const celular = ref('')
+const idUsuario = ref('')
 
 async function crearCliente() {
   await http
@@ -19,7 +31,8 @@ async function crearCliente() {
       nombre: nombre.value,
       apellidos: apellidos.value,
       direccion: direccion.value,
-      celular: celular.value
+      celular: celular.value,
+      idUsuario: idUsuario.value
     })
     .then(() => router.push('/clientes'))
 }
@@ -48,7 +61,19 @@ function goBack() {
     <div class="row">
       <form @submit.prevent="crearCliente">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
+          <select v-model="idUsuario" class="form-select">
+            <option v-for="usuario in usuarios" :value="usuario.id">{{ usuario.usuario }} </option>
+          </select>
+          <label for="usuario">Usuario</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            v-model="nombre"
+            placeholder="Nombre"
+            required
+          />
           <label for="nombre">Nombre</label>
         </div>
         <div class="form-floating mb-3">
@@ -92,4 +117,5 @@ function goBack() {
   </div>
 </template>
 
-<style></style>
+<style>
+</style>

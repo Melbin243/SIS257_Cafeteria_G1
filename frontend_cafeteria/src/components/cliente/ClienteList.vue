@@ -3,6 +3,8 @@ import type { Cliente } from '@/models/cliente'
 import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
+import { useAuthStore } from "@/stores/index";
+const authStore = useAuthStore();
 
 const props = defineProps<{
   ENDPOINT_API: string
@@ -32,6 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <div v-if="authStore.token">
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -48,37 +51,44 @@ onMounted(() => {
         </RouterLink>
       </div>
     </div>
-
-    <div class="table-responsive">
-      <table class="table table-bordered" style="background-color: whitesmoke;">
-        <thead>
-          <tr style="color: chocolate; background-color: wheat;">
+  </div>
+    <br>
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table table-bordered" style="background-color: whitesmoke;">
+          <thead>
+            <tr style="color: chocolate; background-color: wheat;">
             <th scope="col">N°</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellidos</th>
             <th scope="col">Direccion</th>
             <th scope="col">Celular</th>
+            <th scope="col">Usuario</th>
             <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(cliente, index) in clientes.values()" :key="cliente.id">
-            <th scope="row">{{ index + 1 }}</th>
-            <td>{{ cliente.nombre }}</td>
-            <td>{{ cliente.apellidos }}</td>
-            <td>{{ cliente.direccion }}</td>
-            <td>{{ cliente.celular }}</td>
-            <td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="table-light" v-for="(cliente, index) in clientes.values()" :key="cliente.id">
+              <th scope="row">{{ index + 1 }}</th>
+              <td>{{ cliente.nombre }}</td>
+              <td>{{ cliente.apellidos }}</td>
+              <td>{{ cliente.direccion }}</td>
+              <td>{{ cliente.celular }}</td>
+              <td>{{ cliente.usuario.usuario }}</td>
+              <td>
               <button class="btn text-success" @click="toEdit(cliente.id)">
-                <font-awesome-icon icon="fa-solid fa-pen-to-square" title="Editar"/>
+                <font-awesome-icon icon="fa-solid fa-edit" />
               </button>
               <button class="btn text-danger" @click="toDelete(cliente.id)">
                 <font-awesome-icon icon="fa-solid fa-trash-can" title="Eliminar"/>
               </button>
             </td>
-          </tr>
-        </tbody>
-      </table>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>

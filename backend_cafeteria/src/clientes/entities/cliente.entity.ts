@@ -1,5 +1,5 @@
-import { Compra } from 'src/compras/entities/compra.entity';
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Compra, Usuario } from 'src/compras/entities/compra.entity';
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('clientes')
 export class Cliente {
@@ -23,6 +23,10 @@ export class Cliente {
 
   @UpdateDateColumn({name: 'fecha_modicficacion'})
   fechaModificacion: Date
+
+  @OneToOne(() => Usuario)
+  @JoinColumn({ name: 'id_usuario', referencedColumnName: 'id' })
+  usuario: Usuario;
 
   @OneToMany(() => Compra, (venta) => venta.cliente)
   compra: Compra[];
