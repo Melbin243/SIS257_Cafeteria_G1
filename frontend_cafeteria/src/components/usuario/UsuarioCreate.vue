@@ -1,7 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
+import type { Cliente } from '@/models/cliente';
+
+var clientes = ref<Cliente[]>([])
+async function getClientes() {
+  clientes.value = await http.get("clientes").then((response) => response.data)
+}
+
+onMounted(() => {
+  getClientes()
+})
 
 const props = defineProps<{
   ENDPOINT_API: string
@@ -9,17 +19,17 @@ const props = defineProps<{
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
 const usuario = ref('')
-const clave = ref('')
 const email = ref('')
 const rol = ref('')
+const idCliente = ref('')
 
 async function crearUsuario() {
   await http
     .post(ENDPOINT, {
       usuario: usuario.value,
-      clave: clave.value,
       email: email.value,
-      rol: rol.value
+      rol: rol.value,
+      idCliente: idCliente.value
     })
     .then(() => router.push('/usuarios'))
 }
@@ -35,7 +45,7 @@ function goBack() {
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
         <li class="breadcrumb-item">
-          <RouterLink to="/usuarios">usuarios</RouterLink>
+          <RouterLink to="/usuarios">Usuarios</RouterLink>
         </li>
         <li class="breadcrumb-item active" aria-current="page">Crear</li>
       </ol>
@@ -48,18 +58,14 @@ function goBack() {
     <div class="row">
       <form @submit.prevent="crearUsuario">
         <div class="form-floating mb-3">
-          <input type="string" class="form-control" v-model="usuario" placeholder="Usuario" required />
-          <label for="usuario">Usuario</label>
+          <select v-model="idCliente" class="form-select">
+            <option v-for="cliente in clientes" :value="cliente.id">{{ cliente.nombre }}  {{ cliente.apellidos }} </option>
+          </select>
+          <label for="cliente">Cliente</label>
         </div>
         <div class="form-floating mb-3">
-          <input
-            type="string"
-            class="form-control"
-            v-model="clave"
-            placeholder="Clave"
-            required
-          />
-          <label for="clave">Clave</label>
+          <input type="string" class="form-control" v-model="usuario" placeholder="Usuario" required />
+          <label for="usuario">Usuario</label>
         </div>
         <div class="form-floating mb-3">
           <input

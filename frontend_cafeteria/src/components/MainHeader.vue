@@ -29,32 +29,32 @@ const location = useRoute()
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item px-lg-4">
+          <li class="nav-item px-lg-2">
             <RouterLink to="/" class="nav-link text-uppercase">Inicio</RouterLink>
           </li>
-          <li class="nav-item px-lg-4">
+          <li class="nav-item px-lg-3">
             <RouterLink to="/about" class="nav-link text-uppercase">Acerca de</RouterLink>
           </li>
-          <li class="nav-item px-lg-4">
+          <li class="nav-item px-lg-3">
             <RouterLink to="/contacto" class="nav-link text-uppercase">Contacto</RouterLink>
           </li>
           <slot v-if="authStore.token">
-            <li class="nav-item px-lg-4">
+            <li class="nav-item px-lg-3">
               <RouterLink to="/usuarios" class="nav-link text-uppercase">Usuarios</RouterLink>
             </li>
-            <li class="nav-item px-lg-4">
+            <li class="nav-item px-lg-3">
               <RouterLink to="/productos" class="nav-link text-uppercase">Productos</RouterLink>
             </li>
-            <li class="nav-item px-lg-4">
+            <li class="nav-item px-lg-3">
               <RouterLink to="/compras" class="nav-link text-uppercase">Compras</RouterLink>
             </li>
-            <li class="nav-item px-lg-4">
+            <li class="nav-item px-lg-3">
               <RouterLink to="/clientes" class="nav-link text-uppercase">Clientes</RouterLink>
             </li>
-            <li class="nav-item px-lg-4">
+            <li class="nav-item px-lg-3">
               <RouterLink to="/tienda" class="nav-link text-uppercase">Tienda</RouterLink>
             </li>
-            <li class="nav-item px-lg-4">
+            <li class="nav-item px-lg-3">
               <RouterLink to="#" class="nav-link text-uppercase"
                 >Hola {{ authStore.user }}</RouterLink
               >

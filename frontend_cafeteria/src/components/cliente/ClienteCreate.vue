@@ -5,14 +5,7 @@ import http from '@/plugins/axios'
 import router from '@/router'
 import type { Usuario } from '@/models/usuario';
 
-var usuarios = ref<Usuario[]>([])
-async function getUsuarios() {
-  usuarios.value = await http.get("usuarios").then((response) => response.data)
-}
 
-onMounted(() => {
-  getUsuarios()
-})
 
 const props = defineProps<{
   ENDPOINT_API: string
@@ -23,7 +16,7 @@ const nombre = ref('')
 const apellidos = ref('')
 const direccion = ref('')
 const celular = ref('')
-const idUsuario = ref('')
+
 
 async function crearCliente() {
   await http
@@ -32,7 +25,7 @@ async function crearCliente() {
       apellidos: apellidos.value,
       direccion: direccion.value,
       celular: celular.value,
-      idUsuario: idUsuario.value
+
     })
     .then(() => router.push('/clientes'))
 }
@@ -60,12 +53,6 @@ function goBack() {
 
     <div class="row">
       <form @submit.prevent="crearCliente">
-        <div class="form-floating mb-3">
-          <select v-model="idUsuario" class="form-select">
-            <option v-for="usuario in usuarios" :value="usuario.id">{{ usuario.usuario }} </option>
-          </select>
-          <label for="usuario">Usuario</label>
-        </div>
         <div class="form-floating mb-3">
           <input
             type="text"

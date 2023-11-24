@@ -63,7 +63,6 @@ onMounted(() => {
             <th scope="col">Apellidos</th>
             <th scope="col">Direccion</th>
             <th scope="col">Celular</th>
-            <th scope="col">Usuario</th>
             <th scope="col">Acciones</th>
             </tr>
           </thead>
@@ -75,7 +74,6 @@ onMounted(() => {
               <td>{{ cliente.apellidos }}</td>
               <td>{{ cliente.direccion }}</td>
               <td>{{ cliente.celular }}</td>
-              <td>{{ cliente.usuario.usuario }}</td>
               <td>
               <button class="btn text-success" @click="toEdit(cliente.id)">
                 <font-awesome-icon icon="fa-solid fa-edit" />

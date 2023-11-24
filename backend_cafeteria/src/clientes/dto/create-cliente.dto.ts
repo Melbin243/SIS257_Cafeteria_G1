@@ -35,8 +35,5 @@ export class CreateClienteDto {
   })
   readonly celular: string;
 
-  @ApiProperty()
-  @IsDefined({message: 'El campo id cliente debe estar definido'})
-  @IsNumber({}, {message: 'El campo id cliente debe ser tipo numérico'})
-  readonly idUsuario: number;
+  
 }

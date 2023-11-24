@@ -5,7 +5,6 @@ import { Repository } from 'typeorm';
 import { CreateCompraDto } from './dto/create-compra.dto';
 import { UpdateCompraDto } from './dto/update-compra.dto';
 import { Compra } from './entities/compra.entity';
-import { Cliente } from 'src/clientes/entities/cliente.entity';
 
 @Injectable()
 export class ComprasService {
@@ -18,7 +17,6 @@ export class ComprasService {
     const existeCompra = await this.compraRepository.findOneBy({
       totalCompra: createCompraDto.totalCompra,
       usuario: { id: createCompraDto.IdUsuario },
-      cliente: {id:createCompraDto.idCliente }
     });
 
     if (existeCompra) {
@@ -27,18 +25,17 @@ export class ComprasService {
     return this.compraRepository.save({
       totalCompra: createCompraDto.totalCompra,
       usuarios: { id: createCompraDto.IdUsuario },
-      cliente: {id:createCompraDto.idCliente }
     });
   }
 
   async findAll(): Promise<Compra[]> {
-    return this.compraRepository.find({ relations: ['usuario','cliente'] });
+    return this.compraRepository.find({ relations: ['usuario'] });
   }
 
   async findOne(id: number): Promise<Compra> {
     const compra = await this.compraRepository.findOne({
       where: { id },
-      relations: ['usuario', 'cliente'],
+      relations: ['usuario'],
     });
     if (!compra) {
       throw new NotFoundException(`No existe la compra ${id}`);
@@ -53,7 +50,6 @@ export class ComprasService {
     }
     const compraUpdate = Object.assign(compra, updateCompraDto);
     compraUpdate.usuario = { id: updateCompraDto.IdUsuario } as Usuario;
-    compraUpdate.cliente = { id: updateCompraDto.idCliente } as Cliente;
     return this.compraRepository.save(compraUpdate);
   }
 

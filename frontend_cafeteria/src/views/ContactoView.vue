@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="section-heading">
-                        <h2>DIRECCIÓN DE LA TIENDA</h2>
+                        <h2 style="color: white;">DIRECCIÓN DE LA TIENDA</h2>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -19,10 +19,10 @@
                 </div>
                 <div class="col-md-4">
                     <div class="left-content">
-                        <h4>VISÍTANOS</h4>
-                        <p>Estamos ubicados en la ciudad de Sucre - Chuquisaca - Bolivia.<br><br>Direcion: calle Aniceto Arce</p>
+                        <h4 style="color: white;">VISÍTANOS</h4>
+                        <p style="color: white;">Estamos ubicados en la ciudad de Sucre - Chuquisaca - Bolivia.<br><br>Direcion: calle Aniceto Arce</p>
                         <ul class="social-icons">
-                            <h4>NUESTRAS REDES SOCIALES</h4>
+                            <h4 style="color:  white;">NUESTRAS REDES SOCIALES</h4>
                             <div class="contenedor">
                             <a href="https://www.facebook.com/?locale=es_LA" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                             <a href="https://twitter.com/?lang=es" target="_blank"><i class="fa-brands fa-twitter"></i></a>
@@ -56,7 +56,4 @@
   transform: scale(1.2);
 }
 
-.container{
-    color: white;
-}
 </style>

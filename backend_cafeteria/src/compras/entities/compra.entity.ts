@@ -8,6 +8,7 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('compras')
@@ -21,13 +22,12 @@ export class Compra {
   @CreateDateColumn({ name: 'fecha_compra' })
   fechaCompra: Date;
 
+  @UpdateDateColumn({name: 'fecha_modicficacion'})
+  fechaModificacion: Date
+
   @ManyToOne(() => Usuario, (usuario) => usuario.compras)
   @JoinColumn({ name: 'id_usuario', referencedColumnName: 'id' })
   usuario: Usuario;
-
-  @ManyToOne(() => Cliente, (cliente) => cliente.compra)
-  @JoinColumn({ name: 'id_cliente', referencedColumnName: 'id' })
-  cliente: Cliente;
   
   @OneToMany(() => Compra, (compra) => compra.compras)
   compras: Compra[];

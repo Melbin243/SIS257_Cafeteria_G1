@@ -1,7 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString, MaxLength } from 'class-validator';
+import { IsDefined, IsEmail, IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
 
 export class CreateUsuarioDto {
+  @ApiProperty()
+  @IsDefined({message: 'El campo id cliente debe estar definido'})
+  @IsNumber({}, {message: 'El campo id cliente debe ser tipo numérico'})
+  readonly idCliente: number;
+
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo usuario no puede estar vacio' })
   @IsString({ message: 'El campo usuario debe ser de tipo texto' })

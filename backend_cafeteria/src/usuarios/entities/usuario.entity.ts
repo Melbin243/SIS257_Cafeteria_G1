@@ -7,10 +7,12 @@ import {
   Entity,
   JoinColumn,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Cliente } from 'src/clientes/entities/cliente.entity';
 
 @Entity('usuarios')
 export class Usuario {
@@ -38,6 +40,10 @@ export class Usuario {
   @OneToMany(() => Compra, (compra) => compra.usuario)
   @JoinColumn({ name: 'id_compra', referencedColumnName: 'id' })
   compras: Compra[];
+
+  @OneToOne(() => Cliente)
+  @JoinColumn({ name: 'id_cliente', referencedColumnName: 'id' })
+  cliente: Cliente;
 
   @BeforeInsert()
   @BeforeUpdate()

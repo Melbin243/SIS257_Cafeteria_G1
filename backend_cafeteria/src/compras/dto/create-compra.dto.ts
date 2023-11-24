@@ -12,8 +12,4 @@ export class CreateCompraDto {
   @IsNumber({}, { message: 'El id usuario compra debe ser de tipo numérico' })
   readonly IdUsuario: number;
 
-  @ApiProperty()
-  @IsDefined({ message: 'El campo idCliente debe estar definido' })
-  @IsNumber({}, { message: 'El campo idCliente debe ser de tipo numerico' })
-  readonly idCliente: number;
 }

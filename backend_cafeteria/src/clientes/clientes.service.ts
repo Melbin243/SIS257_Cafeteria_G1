@@ -1,10 +1,13 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
-import { CreateClienteDto } from './dto/create-cliente.dto';
-import { UpdateClienteDto } from './dto/update-cliente.dto';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateClienteDto } from './dto/create-cliente.dto';
+import { UpdateClienteDto } from './dto/update-cliente.dto';
 import { Cliente } from './entities/cliente.entity';
-import { Usuario } from 'src/usuarios/entities/usuario.entity';
 
 @Injectable()
 export class ClientesService {
@@ -17,7 +20,6 @@ export class ClientesService {
     const existeCliente = await this.clienteRepository.findOneBy({
       nombre: createClienteDto.nombre,
       apellidos: createClienteDto.apellidos,
-      usuario: { id: createClienteDto.idUsuario }
     });
 
     if (existeCliente) {
@@ -29,12 +31,11 @@ export class ClientesService {
       apellidos: createClienteDto.apellidos.trim(),
       direccion: createClienteDto.direccion.trim(),
       celular: createClienteDto.celular.trim(),
-      usuario: { id: createClienteDto.idUsuario }
     });
   }
 
   async findAll(): Promise<Cliente[]> {
-    return this.clienteRepository.find({ relations: ['usuario'] });
+    return this.clienteRepository.find();
   }
 
   async findOne(id: number): Promise<Cliente> {
@@ -57,7 +58,7 @@ export class ClientesService {
       throw new NotFoundException(`No existe el cliente ${id}`);
     }
     const clienteUpdate = Object.assign(cliente, updateClienteDto);
-    clienteUpdate.usuario = { id: updateClienteDto.idUsuario } as Usuario;
+
     return this.clienteRepository.save(clienteUpdate);
   }
 

@@ -9,7 +9,6 @@ const props = defineProps<{
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
 const usuario = ref('')
-const clave = ref('')
 const email = ref('')
 const rol = ref('')
 const id = router.currentRoute.value.params['id']
@@ -18,7 +17,6 @@ async function editarUsuario() {
   await http
     .patch(`${ENDPOINT}/${id}`, {
         usuario: usuario.value,
-        clave: clave.value,
         email: email.value,
         rol: rol.value
     })
@@ -28,7 +26,6 @@ async function editarUsuario() {
 async function getUsuario() {
   await http.get(`${ENDPOINT}/${id}`).then((response) => {
     ;(usuario.value = response.data.usuario),
-      (clave.value = response.data.clave),
       (email.value = response.data.email),
       (rol.value = response.data.rol)
   })
@@ -64,16 +61,6 @@ onMounted(() => {
         <div class="form-floating mb-3">
           <input type="string" class="form-control" v-model="usuario" placeholder="Usuario" required />
           <label for="usuario">Usuario</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            type="string"
-            class="form-control"
-            v-model="clave"
-            placeholder="Clave"
-            required
-          />
-          <label for="clave">Clave</label>
         </div>
         <div class="form-floating mb-3">
           <input

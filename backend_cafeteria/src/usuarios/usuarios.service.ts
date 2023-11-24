@@ -9,6 +9,7 @@ import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Usuario } from './entities/usuario.entity';
 import { Repository } from 'typeorm';
+import { Cliente } from 'src/clientes/entities/cliente.entity';
 
 @Injectable()
 export class UsuariosService {
@@ -20,6 +21,7 @@ export class UsuariosService {
   async create(createUsuarioDto: CreateUsuarioDto): Promise<Usuario> {
     const existeUsuario = await this.usuarioRepository.findOneBy({
       usuario: createUsuarioDto.usuario.trim(),
+      cliente: { id: createUsuarioDto.idCliente },
     });
 
     if (existeUsuario) {
@@ -30,6 +32,7 @@ export class UsuariosService {
     usuario.clave = process.env.DEFAULT_PASSWORD;
     usuario.email = createUsuarioDto.email.trim();
     usuario.rol = createUsuarioDto.rol.trim();
+    usuario.cliente = { id: createUsuarioDto.idCliente } as Cliente;
 
     const usuarioDB = await this.usuarioRepository.save(usuario);
     delete usuario.clave;
@@ -37,7 +40,7 @@ export class UsuariosService {
   }
 
   async findAll(): Promise<Usuario[]> {
-    return this.usuarioRepository.find();
+    return this.usuarioRepository.find({ relations: ['cliente'] });
   }
 
   async findOne(id: number): Promise<Usuario> {
@@ -57,6 +60,7 @@ export class UsuariosService {
       throw new NotFoundException(`No existe el usuario ${id}`);
     }
     const usuarioUpdate = Object.assign(usuario, updateUsuarioDto);
+    usuarioUpdate.cliente = { id: updateUsuarioDto.idCliente } as Cliente;
     return this.usuarioRepository.save(usuarioUpdate);
   }
 
