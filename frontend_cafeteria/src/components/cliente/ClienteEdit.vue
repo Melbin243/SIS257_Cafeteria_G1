@@ -14,10 +14,10 @@ const direccion = ref('')
 const celular = ref('')
 const id = router.currentRoute.value.params['id']
 
-async function editarCliente() {
+async function editarProducto() {
   await http
     .patch(`${ENDPOINT}/${id}`, {
-        nombre: nombre.value,
+      nombre: nombre.value,
       apellidos: apellidos.value,
       direccion: direccion.value,
       celular: celular.value
@@ -51,23 +51,29 @@ onMounted(() => {
         <li class="breadcrumb-item">
           <RouterLink to="/clientes">Clientes</RouterLink>
         </li>
-        <li class="breadcrumb-item active" aria-current="page" style="color: cadetblue;">Editar</li>
+        <li class="breadcrumb-item active" aria-current="page">Editar</li>
       </ol>
     </nav>
 
     <div class="row">
-      <h2 style="color: whitesmoke;">Editar Cliente</h2>
+      <h2 style="color: white">Editar Cliente</h2>
     </div>
 
     <div class="row">
-      <form @submit.prevent="editarCliente">
+      <form @submit.prevent="editarProducto">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
+          <input
+            type="string"
+            class="form-control"
+            v-model="nombre"
+            placeholder="Nombre"
+            required
+          />
           <label for="nombre">Nombre</label>
         </div>
         <div class="form-floating mb-3">
           <input
-            type="text"
+            type="string"
             class="form-control"
             v-model="apellidos"
             placeholder="Apellidos"
@@ -77,7 +83,7 @@ onMounted(() => {
         </div>
         <div class="form-floating mb-3">
           <input
-            type="text"
+            type="string"
             class="form-control"
             v-model="direccion"
             placeholder="Direccion"
@@ -85,9 +91,9 @@ onMounted(() => {
           />
           <label for="direccion">Direccion</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-3">
           <input
-            type="text"
+            type="string"
             class="form-control"
             v-model="celular"
             placeholder="Celular"

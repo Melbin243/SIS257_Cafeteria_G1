@@ -4,5 +4,4 @@ export interface Cliente {
   apellidos: string
   direccion: string
   celular: string
-  idUsuario: number;
 }

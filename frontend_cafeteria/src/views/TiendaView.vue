@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import{ Producto } from '@/models/producto';
+import{ type Producto } from '@/models/producto';
 import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
@@ -45,8 +45,9 @@ onMounted(() => {
         <div class="card h-100" style="width: 15rem">
           <img
             class="card-img-top"
-            src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+            :src="producto.urlImagen"
             alt="..."
+            style="width: 100%; height: auto; width: 238px; height: 250px;"
           />
           <div class="card-body p-2" style="color: black;">
             <div class="text-center">

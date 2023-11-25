@@ -13,16 +13,18 @@ const descripcion = ref('')
 const categoria = ref('')
 const precio = ref('')
 const stock = ref('')
+const urlImagen = ref('')
 const id = router.currentRoute.value.params['id']
 
 async function editarProducto() {
   await http
     .patch(`${ENDPOINT}/${id}`, {
-        nombre: nombre.value,
-        descripcion: descripcion.value,
-        categoria: categoria.value,
-        precio: precio.value,
-        stock: stock.value
+      nombre: nombre.value,
+      descripcion: descripcion.value,
+      categoria: categoria.value,
+      precio: precio.value,
+      stock: stock.value,
+      urlImagen: urlImagen.value
     })
     .then(() => router.push('/productos'))
 }
@@ -33,7 +35,8 @@ async function getProducto() {
       (descripcion.value = response.data.descripcion),
       (categoria.value = response.data.categoria),
       (precio.value = response.data.precio),
-      (stock.value = response.data.stock)
+      (stock.value = response.data.stock),
+      (urlImagen.value = response.data.urlImagen)
   })
 }
 
@@ -47,7 +50,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="container">
+  <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
@@ -59,13 +62,19 @@ onMounted(() => {
     </nav>
 
     <div class="row">
-      <h2 style="color: white;">Editar Producto</h2>
+      <h2 style="color: white">Editar Producto</h2>
     </div>
 
     <div class="row">
       <form @submit.prevent="editarProducto">
         <div class="form-floating mb-3">
-          <input type="string" class="form-control" v-model="nombre" placeholder="Nombre" required />
+          <input
+            type="string"
+            class="form-control"
+            v-model="nombre"
+            placeholder="Nombre"
+            required
+          />
           <label for="nombre">Nombre</label>
         </div>
         <div class="form-floating mb-3">
@@ -95,18 +104,23 @@ onMounted(() => {
             v-model="precio"
             placeholder="Precio"
             required
+            step="0.1"
           />
           <label for="precio">Precio</label>
         </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" v-model="stock" placeholder="Stock" required />
+          <label for="stock">Stock</label>
+        </div>
         <div class="form-floating">
           <input
-            type="number"
+            type="text"
             class="form-control"
-            v-model="stock"
-            placeholder="Stock"
+            v-model="urlImagen"
+            placeholder="imagen"
             required
           />
-          <label for="stock">Stock</label>
+          <label for="imagen">URL Imagen</label>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">Editar</button>

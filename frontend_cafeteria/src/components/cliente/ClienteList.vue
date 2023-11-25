@@ -57,7 +57,7 @@ onMounted(() => {
       <div class="table-responsive">
         <table class="table table-bordered" style="background-color: whitesmoke;">
           <thead>
-            <tr style="color: chocolate; background-color: wheat;">
+            <tr style="color: rgb(218, 107, 28); background-color: wheat;">
             <th scope="col">N°</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellidos</th>

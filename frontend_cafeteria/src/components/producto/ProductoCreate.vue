@@ -13,6 +13,7 @@ const descripcion = ref('')
 const categoria = ref('')
 const precio = ref('')
 const stock = ref('')
+const urlImagen = ref('')
 
 async function crearProducto() {
   await http
@@ -21,7 +22,8 @@ async function crearProducto() {
       descripcion: descripcion.value,
       categoria: categoria.value,
       precio: precio.value,
-      stock: stock.value
+      stock: stock.value,
+      urlImagen: urlImagen.value
     })
     .then(() => router.push('/productos'))
 }
@@ -84,7 +86,7 @@ function goBack() {
           />
           <label for="precio">Precio</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-3">
           <input
             type="number"
             class="form-control"
@@ -93,6 +95,10 @@ function goBack() {
             required
           />
           <label for="stock">Stock</label>
+        </div>
+        <div class="form-floating">
+          <input type="text" class="form-control" v-model="urlImagen" placeholder="imagen" required />
+          <label for="imagen">URL Imagen</label>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">Crear</button>

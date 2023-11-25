@@ -25,7 +25,8 @@ export class ProductosService {
       descripcion: createProductoDto.descripcion.trim(),
       categoria: createProductoDto.categoria.trim(),
       precio: createProductoDto.precio,
-      stock: createProductoDto.stock
+      stock: createProductoDto.stock,
+      urlImagen: createProductoDto.urlImagen.trim(),
     });
   }
 
