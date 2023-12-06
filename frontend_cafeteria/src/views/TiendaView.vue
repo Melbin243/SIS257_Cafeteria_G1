@@ -35,7 +35,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <div class="container">
+  <div class="container" style="background-color: black;">
     <div class="row">
       <h2 style="color: whitesmoke; text-align: center; font-size: 50px;">Productos Disponibles</h2>
     </div>
@@ -49,6 +49,17 @@ onMounted(() => {
             alt="..."
             style="width: 100%; height: auto; width: 238px; height: 250px;"
           />
+          <div v-if="producto.stock >= 1">
+            <div class="down-content">
+              <h7>DISPONIBLE</h7>
+              <br>
+            </div>
+          </div>
+          <div v-else>
+            <div class="down-content">
+              <h7>AGOTADO</h7>
+            </div>
+          </div>
           <div class="card-body p-2" style="color: black;">
             <div class="text-center">
               <h5 class="fw-bolder" style="font-size: 1rem">{{ producto.nombre }}</h5>

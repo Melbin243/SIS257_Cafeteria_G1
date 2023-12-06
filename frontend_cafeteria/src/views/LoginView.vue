@@ -13,7 +13,7 @@ function onSubmit() {
 </script>
 
 <template>
-  <div class="my-5 pt-5">
+  <div class="my-5 pt-5"  style="background-color: black;">
     <h1 class="text-center" style="color: whitesmoke;">Iniciar Sesión</h1>
     <form class="form" @submit.prevent="onSubmit">
       <label class="form-label">Usuario:</label>

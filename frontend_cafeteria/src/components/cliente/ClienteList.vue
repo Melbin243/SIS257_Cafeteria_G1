@@ -34,7 +34,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="authStore.token">
+  <div v-if="authStore.token" style="background-color: black;">
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">

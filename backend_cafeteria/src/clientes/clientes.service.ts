@@ -39,10 +39,7 @@ export class ClientesService {
   }
 
   async findOne(id: number): Promise<Cliente> {
-    const cliente = await this.clienteRepository.findOne({
-      where: { id },
-      relations: ['usuario'],
-    });
+    const cliente = await this.clienteRepository.findOneBy({ id });
     if (!cliente) {
       throw new NotFoundException(`No existe el cliente ${id}`);
     }

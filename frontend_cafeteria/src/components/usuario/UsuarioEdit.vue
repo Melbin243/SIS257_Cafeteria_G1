@@ -41,7 +41,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" style="background-color: black;">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
@@ -73,14 +73,11 @@ onMounted(() => {
           <label for="email">Email</label>
         </div>
         <div class="form-floating mb-3">
-          <input
-            type="string"
-            class="form-control"
-            v-model="rol"
-            placeholder="Rol"
-            required
-          />
           <label for="rol">Rol</label>
+          <select class="form-control" v-model="rol" id="rol" required>
+              <option value="usuario">Usuario</option>
+              <option value="administrador">Administrador</option>
+          </select>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">Editar</button>

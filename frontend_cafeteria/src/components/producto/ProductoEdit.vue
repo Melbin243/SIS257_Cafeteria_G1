@@ -50,7 +50,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" style="background-color: black;">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>

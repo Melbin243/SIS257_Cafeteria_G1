@@ -14,7 +14,7 @@ const direccion = ref('')
 const celular = ref('')
 const id = router.currentRoute.value.params['id']
 
-async function editarProducto() {
+async function editarCliente() {
   await http
     .patch(`${ENDPOINT}/${id}`, {
       nombre: nombre.value,
@@ -44,7 +44,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container" style="background-color: black;">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
@@ -60,7 +60,7 @@ onMounted(() => {
     </div>
 
     <div class="row">
-      <form @submit.prevent="editarProducto">
+      <form @submit.prevent="editarCliente">
         <div class="form-floating mb-3">
           <input
             type="string"
