@@ -6,7 +6,7 @@ const location = useRoute()
 </script>
 
 <template>
-  <header class="site-header" style="background-color:  #EE5007; overflow: hidden;" >
+  <header class="site-header" style="background-color: #ee5007; overflow: hidden">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-12 d-flex flex-wrap">
@@ -19,15 +19,26 @@ const location = useRoute()
     </div>
   </header>
 
-  <nav class="navbar navbar-expand-lg" :style="'background-color: ' + (location.path != '/' ? 'black ' : 'transparent')" style="overflow: hidden;" >
+  <nav
+    class="navbar navbar-expand-lg"
+    :style="'background-color: ' + (location.path != '/' ? 'black ' : 'transparent')"
+    style="overflow: hidden"
+  >
     <div class="container">
-
-      <RouterLink v-if="!authStore.token" to="/login" class="btn custom-btn d-lg-none ms-auto me-4">Iniciar Sesión
+      <RouterLink v-if="!authStore.token" to="/login" class="btn custom-btn d-lg-none ms-auto me-4"
+        >Iniciar Sesión
       </RouterLink>
       <a v-else @click="authStore.logout()" class="btn custom-btn d-lg-none ms-auto me-4">Salir</a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -40,6 +51,9 @@ const location = useRoute()
           <li class="nav-item">
             <RouterLink to="/about" class="nav-link click-scroll">Acerca De</RouterLink>
           </li>
+          <li class="nav-item">
+            <RouterLink to="/tienda" class="nav-link text-uppercase">Tienda</RouterLink>
+          </li>
           <slot v-if="authStore.token">
             <li class="nav-item">
               <RouterLink to="/usuarios" class="nav-link text-uppercase">Usuarios</RouterLink>
@@ -50,9 +64,7 @@ const location = useRoute()
             <li class="nav-item">
               <RouterLink to="/productos" class="nav-link text-uppercase">Productos</RouterLink>
             </li>
-            <li class="nav-item">
-              <RouterLink to="/tienda" class="nav-link text-uppercase">Tienda</RouterLink>
-            </li>
+
             <li class="nav-item">
               <RouterLink to="/compras" class="nav-link text-uppercase">Compras</RouterLink>
             </li>
@@ -61,7 +73,8 @@ const location = useRoute()
             </li>
           </slot>
         </ul>
-        <RouterLink v-if="!authStore.token" to="/login" class="btn custom-btn d-lg-block d-none">Iniciar Sesión
+        <RouterLink v-if="!authStore.token" to="/login" class="btn custom-btn d-lg-block d-none"
+          >Iniciar Sesión
         </RouterLink>
         <a v-else @click="authStore.logout()" class="btn custom-btn d-lg-block d-none">Salir</a>
       </div>

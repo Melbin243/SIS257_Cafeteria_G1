@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Cliente } from '@/models/cliente'
+import type { Compra } from '@/models/compra'
 import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
@@ -11,25 +11,25 @@ const props = defineProps<{
 }>()
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
-var clientes = ref<Cliente[]>([])
+var compras = ref<Compra[]>([])
 
-async function getClientes() {
-  clientes.value = await http.get(ENDPOINT).then((response) => response.data)
+async function getCompras() {
+  compras.value = await http.get(ENDPOINT).then((response) => response.data)
 }
 
 function toEdit(id: number) {
-  router.push(`/clientes/editar/${id}`)
+  router.push(`/compras/editar/${id}`)
 }
 
 async function toDelete(id: number) {
-  var r = confirm('¿Está seguro que se desea eliminar al Cliente')
+  var r = confirm('¿Está seguro que se desea eliminar la Compra')
   if (r == true) {
-    await http.delete(`${ENDPOINT}/${id}`).then(() => getClientes())
+    await http.delete(`${ENDPOINT}/${id}`).then(() => getCompras())
   }
 }
 
 onMounted(() => {
-  getClientes()
+  getCompras()
 })
 </script>
 
@@ -40,15 +40,15 @@ onMounted(() => {
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
           <li class="breadcrumb-item active" aria-current="page" style="color: cadetblue">
-            Clientes
+            Compras
           </li>
         </ol>
       </nav>
 
       <div class="row">
-        <h2 style="color: whitesmoke">Lista de Clientes</h2>
+        <h2 style="color: whitesmoke">Lista de Compras</h2>
         <div class="col-12">
-          <RouterLink to="/clientes/crear">
+          <RouterLink to="/compras/crear">
             <font-awesome-icon icon="fa-solid fa-circle-plus" /> Crear Nuevo
           </RouterLink>
         </div>
@@ -61,25 +61,21 @@ onMounted(() => {
           <thead>
             <tr style="color: rgb(218, 107, 28); background-color: wheat">
               <th scope="col">N°</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellidos</th>
-              <th scope="col">Direccion</th>
-              <th scope="col">Celular</th>
+              <th scope="col">Total</th>
+              <th scope="col">Usuario</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="table-light" v-for="(cliente, index) in clientes.values()" :key="cliente.id">
+            <tr class="table-light" v-for="(compra, index) in compras.values()" :key="compra.id">
               <th scope="row">{{ index + 1 }}</th>
-              <td>{{ cliente.nombre }}</td>
-              <td>{{ cliente.apellidos }}</td>
-              <td>{{ cliente.direccion }}</td>
-              <td>{{ cliente.celular }}</td>
+              <td>{{ compra.totalCompra }}</td>
+              <td>{{ compra.idUsuario }}</td>
               <td>
-                <button class="btn text-success" @click="toEdit(cliente.id)">
+                <button class="btn text-success" @click="toEdit(compra.id)">
                   <font-awesome-icon icon="fa-solid fa-edit" />
                 </button>
-                <button class="btn text-danger" @click="toDelete(cliente.id)">
+                <button class="btn text-danger" @click="toDelete(compra.id)">
                   <font-awesome-icon icon="fa-solid fa-trash-can" title="Eliminar" />
                 </button>
               </td>

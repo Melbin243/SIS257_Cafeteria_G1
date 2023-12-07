@@ -77,6 +77,19 @@ const router = createRouter({
       ]
     },
     {
+      path: '/compras',
+      name: 'compras',
+      component: () => import('../views/CompraView.vue'),
+      children: [
+        { path: '', component: () => import('../components/compra/CompraList.vue') },
+        { path: 'crear', component: () => import('../components/compra/CompraCreate.vue') },
+        {
+          path: 'editar/:id',
+          component: () => import('../components/compra/CompraEdit.vue')
+        }
+      ]
+    },
+    {
       path: '/usuarios',
       name: 'usuarios',
       component: () => import('../views/UsuarioView.vue'),
@@ -93,7 +106,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to) => {
-  const publicPages = ['/', '/about','/contacto', '/login']
+  const publicPages = ['/', '/about','/contacto', '/login', '/tienda']
   const authRequired = !publicPages.includes(to.path)
   const authStore = useAuthStore()
 

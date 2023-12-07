@@ -9,6 +9,8 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 import { ProductosModule } from './productos/productos.module';
 import { CompraDetallesModule } from './compra-detalles/compra-detalles.module';
 import { AuthModule } from './auth/auth.module';
+import { ComentariosModule } from './comentarios/comentarios.module';
+import { PromocionesModule } from './promociones/promociones.module';
 
 @Module({
   imports: [
@@ -30,6 +32,8 @@ import { AuthModule } from './auth/auth.module';
     ProductosModule,
     CompraDetallesModule,
     AuthModule,
+    ComentariosModule,
+    PromocionesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

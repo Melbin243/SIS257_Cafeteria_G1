@@ -3,6 +3,9 @@ import{ type Producto } from '@/models/producto';
 import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
+import { useAuthStore } from '@/stores/index'
+
+const authStore = useAuthStore()
 
 const props = defineProps<{
   ENDPOINT_API: string
@@ -27,7 +30,7 @@ async function toDelete(id: number) {
 }
 
 function addToCart(producto: Producto) {
-  console.log('Producto agregado al carro:', producto)
+  //alert("compra exitosa")
 }
 
 onMounted(() => {
@@ -67,10 +70,10 @@ onMounted(() => {
               stock: &nbsp;{{ producto.stock }}
             </div>
           </div>
-          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center">
-              <a class="btn btn-outline-dark btn-sm mt-auto" @click="addToCart(producto)"
-                >Agregar al Carro</a
+          <div  class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div v-if="authStore.token" class="text-center">
+              <a class="btn btn-outline-dark btn-sm mt-auto" href="compras/crear" @click="addToCart(producto)"
+                >Comprar</a
               >
             </div>
           </div>

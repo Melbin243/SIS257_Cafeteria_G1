@@ -13,6 +13,7 @@ import {
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Cliente } from 'src/clientes/entities/cliente.entity';
+import { Comentario } from 'src/comentarios/entities/comentario.entity';
 
 @Entity('usuarios')
 export class Usuario {
@@ -44,6 +45,10 @@ export class Usuario {
   @OneToOne(() => Cliente)
   @JoinColumn({ name: 'id_cliente', referencedColumnName: 'id' })
   cliente: Cliente;
+
+  @OneToMany(() => Comentario, (comentario) => comentario.usuario)
+  @JoinColumn({ name: 'id_cometario', referencedColumnName: 'id' })
+  comentarios: Comentario[];
 
   @BeforeInsert()
   @BeforeUpdate()

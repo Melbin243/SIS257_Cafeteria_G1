@@ -1,4 +1,5 @@
 import { CompraDetalle } from 'src/compra-detalles/entities/compra-detalle.entity';
+import { Promocion } from 'src/promociones/entities/promocion.entity';
 import {
   Column,
   CreateDateColumn,
@@ -39,4 +40,7 @@ export class Producto {
 
   @OneToMany(() => CompraDetalle, (compradetalle) => compradetalle.productos)
   compradetalle: CompraDetalle[];
+
+  @OneToMany(() => Promocion, (promocion) => promocion.productos)
+  promocion: Promocion[];
 }
